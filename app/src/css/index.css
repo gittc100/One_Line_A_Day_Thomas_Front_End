@@ -1,0 +1,312 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+li {
+  font-family: 'Roboto', sans-serif;
+}
+h1 {
+  font-size: 4rem;
+}
+h2 {
+  font-size: 3.2rem;
+  padding-bottom: 10px;
+}
+h4 {
+  font-size: 2.5rem;
+  padding-bottom: 10px;
+}
+p {
+  line-height: 1.5;
+  font-size: 1.6rem;
+  padding-bottom: 10px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+input,
+textarea {
+  font-family: 'Roboto', sans-serif;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(171.71deg, rgba(0, 217, 192, 0.75) -5.54%, #FCFDAF 99.2%);
+}
+.container-main-routes {
+  height: 85%;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-main-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.container-main-nav .container-logo {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1.25rem;
+}
+.container-main-nav .container-logo img {
+  width: 4rem;
+}
+.container-main-nav .container-logo h2 {
+  padding: 0;
+  margin-left: 1.4rem;
+  font-size: 3rem;
+}
+.container-main-nav .nav-links-container {
+  margin-right: 1.25rem;
+}
+.container-main-nav .nav-links-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #091714;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: 0.5s;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+.container-main-nav .nav-links-container button:hover {
+  color: #266054;
+}
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-form h3 {
+  font-size: 3rem;
+  color: #091714;
+  margin-bottom: 1rem;
+}
+.login-form input {
+  padding: 1rem;
+  font-size: 2rem;
+  border: 1px solid #091714;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+  width: 30rem;
+  outline: none;
+  text-decoration: none;
+}
+.login-form .login-form-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 30rem;
+}
+.login-form .login-form-btn-container .login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 4rem;
+  background-color: #b2f2bc;
+  color: #091714;
+  font-size: 2rem;
+  border: 1px solid #091714;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.login-form .login-form-btn-container .login-btn:hover {
+  background-color: #091714;
+  color: #b2f2bc;
+  border: 1px solid #091714;
+}
+.login-form .login-form-btn-container .nav-links {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 4rem;
+  background-color: #091714;
+  color: #b2f2bc;
+  font-size: 2rem;
+  border: 1px solid #b2f2bc;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.login-form .login-form-btn-container .nav-links:hover {
+  background-color: #b2f2bc;
+  color: #091714;
+  border: 1px solid #091714;
+}
+.container-main-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5%;
+}
+.container-main-footer p {
+  padding: 0;
+}

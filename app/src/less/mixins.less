@@ -1,0 +1,38 @@
+// Mixins in here
+
+.custom-btn(@width, @height, @background, @color, @font-size) {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: @width;
+    height: @height;
+    background-color: @background;
+    color: @color;
+    font-size: @font-size;
+    border: 1px solid @color;
+    border-radius: (@font-size * 1);
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover {
+      background-color: @color;
+      color: @background;
+      border: 1px solid @black;
+    }
+  }
+
+.simple-btn(@color, @font-size){
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: @color;
+  font-size: @font-size;
+  cursor: pointer;
+  transition: 0.5s;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  &:hover {
+    color: lighten(@color, 20%);
+  }
+}
