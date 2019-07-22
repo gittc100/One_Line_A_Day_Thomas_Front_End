@@ -49,7 +49,7 @@ $ yarn start
 * [LESS](http://lesscss.org/) - Styling Manager
 
 ## Original Design:
-- Figma: https://www.figma.com/file/BIws74DOpMo8fpyVXG4CT1a0/Web-FrontEnd-UI?node-id=0%3A1
+* [Figma](https://www.figma.com/file/BIws74DOpMo8fpyVXG4CT1a0/Web-FrontEnd-UI?node-id=0%3A1) - Design
 
 ## Author
 
