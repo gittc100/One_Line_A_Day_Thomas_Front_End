@@ -39,7 +39,7 @@ $ yarn start
 
 ### Back End
 * [Heroku](https://www.heroku.com/) - Server and Database Hosting Service
-- Back End GitHub: https://github.com/one-line-a-day-2/backend
+* [GitHub](https://github.com/one-line-a-day-2/backend)
 
 ## Built With
 
