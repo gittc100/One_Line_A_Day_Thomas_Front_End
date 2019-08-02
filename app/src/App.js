@@ -61,25 +61,25 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
         </div>
         {/* {this.props.userID === null?
-        <><Redirect to="/login"/><div>login</div></>:<><Redirect from="/login" to="/notes"/><div>notes</div></>} */}
+        <><Redirect to="/login"/><div>login</div></>:<><Redirect from="/login" to="/"/><div>notes</div></>} */}
         <Footer />
       </div>
     );
   }
 }
 
-// export default App;
+export default App;
 
-const mapStateToProps = state => ({
-  userID: state.userID,
-  notes: state.notes,
-  note: state.note,
-  fetching: state.fetching,
-  error: state.error,
-  loggedIn: state.loggedIn
-});
+// const mapStateToProps = state => ({
+//   userID: state.userID,
+//   notes: state.notes,
+//   note: state.note,
+//   fetching: state.fetching,
+//   error: state.error,
+//   loggedIn: state.loggedIn
+// });
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(App); // this is the issue?
+// export default connect(
+//   mapStateToProps,
+//   { login }
+// )(App); // this is the issue?

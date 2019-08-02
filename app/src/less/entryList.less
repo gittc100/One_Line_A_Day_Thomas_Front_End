@@ -1,0 +1,111 @@
+.main-notes-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height:100%;
+    .sort{
+        margin-bottom: 4rem;
+        select{
+            font-size: 2rem;
+            padding: 0.75rem;
+            border: 1px solid black;
+            border-radius: 0.25rem;
+            background-color: transparent;
+            cursor: pointer;
+            option{
+                background-color: rgb(111,233,199);
+            }
+        }
+    }
+    .notes-list-wrapper{
+        width: 75%;
+        height:90%;
+        overflow-y: scroll;
+        .entries-container-year{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .entries-container-months{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                .entries-container-month{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    margin-top: 2rem;
+                    h2{
+                        width: 100%;
+                        font-size: 3rem;
+                        margin-bottom: 2rem;
+                        border-bottom: 4px solid black;
+                    }
+                    .entries-container-entries{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        padding: 0% 5%;
+                        width: 100%;
+                        .entries-container-entry{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            width: 100%;
+                            padding: 1rem;
+                            margin-bottom: 2rem;
+                            background: white;
+                            p{
+                                padding: 0;
+                            }
+                            .day-number{
+                                font-weight: bold;
+                                font-size: 2rem;
+                            }
+                            .day-acr{
+                                font-weight: bold;
+                                margin-left: 1rem;
+                                font-size: 2rem;
+                            }
+                            .entry{
+                                font-weight: bold;
+                                margin-left: 1rem;
+                                width: 100%;
+                                font-size: 2rem;
+                                cursor: pointer;
+                            }
+                            .entry-input{
+                                font-weight: bold;
+                                margin-left: 1rem;
+                                width: 100%;
+                                font-size: 2rem;
+                                border: none;
+                            }
+                            .entry-button{
+                                font-weight: bold;
+                                margin-left: 1rem;
+                                border: none;
+                                border-left: 2px solid black;
+                                border-radius: 0.25rem;
+                                font-size: 2rem;
+                                background: @white;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.notes-list-wrapper::-webkit-scrollbar { 
+    width: 0px;
+    background: transparent;
+}
+.hidden{
+    display: none;
+}

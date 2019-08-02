@@ -28,6 +28,10 @@ export const LOGIN_USER_START = "LOGIN_USER_START";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 
+export const REGISTER_USER_START = "REGISTER_USER_START";
+export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
+export const REGISTER_USER_FAILURE = "REGISTER_USER_FAILURE";
+
 export const addNote = (userID, item) => dispatch => {
   dispatch({ type: ADD_NOTE_START });
   const token = localStorage.getItem("jwt");
@@ -64,7 +68,7 @@ export const getNotes = userID => dispatch => {
   axios
     .get(
       `https://one-line-a-day-2.herokuapp.com/api/users/${userID}/entries`,
-      options
+      // options
     )
     .then(response => {
       console.log("fetch finished");
@@ -147,7 +151,7 @@ export const editNote = (userID, entryID, item) => dispatch => {
     .put(
       `https://one-line-a-day-2.herokuapp.com/api/users/${userID}/entries/${entryID}`,
       item,
-      options
+      // options
     )
     .then(response => {
       console.log(response);
@@ -173,4 +177,19 @@ export const login = item => dispatch => {
       });
     })
     .catch(err => dispatch({ type: LOGIN_USER_FAILURE, payload: err }));
+};
+
+export const register = item => dispatch => {
+  dispatch({ type: REGISTER_USER_START });
+  axios
+    .post("https://one-line-a-day-2.herokuapp.com/api/register", item)
+    .then(res => {
+      console.log(res);
+      console.log(res.data.id);
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: res.data.id
+      });
+    })
+    .catch(err => dispatch({ type: REGISTER_USER_FAILURE, payload: err }));
 };

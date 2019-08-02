@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { getNotes, getNotesBySort } from "../actions";
 import NotesList from "../components/NotesList";
 
 
@@ -8,51 +6,35 @@ class JournalView extends React.Component {
   constructor() {
     super();
     this.state = {
-      sort: "none"
+      // reduce: "month"
     };
   }
-  componentDidMount() {
-    this.props.getNotes(this.props.userId); 
-  }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.sort !== prevState.sort) {
-      if (this.state.sort === "alphabetically") {
-        this.props.getNotesBySort(function(a, b) {
-          return a.title > b.title ? 1 : b.title > a.title ? -1 : 0;
-        });
-      } else if (this.state.sort === "none") {
-        this.props.getNotes(this.props.userId);
-      }
-    }
-  }
-
-  sortHandler = e => {
-    console.log(e.target.value);
-    this.setState({ ...this.state, sort: e.target.value });
-  };
+  // sortHandler = e => {
+  //   console.log(e.target.value);
+  //   e.preventDefault();
+  //   this.setState({ ...this.state, reduce: e.target.value });
+  // };
 
   render() {
-    console.log("running render function");
-    
-      return (
-        <div className="notes-list-wrapper">
-          <NotesList {...this.props} sortHandler={this.sortHandler} />
-        </div>
-      );
-    
+    return (
+      <div className="main-notes-container">
+      {/* <div className="sort">
+          <select onChange={this.sortHandler}>
+            <option selected="selected" value="month">Current Monthly Entries</option>
+            <option value="year">Current Yearly Entries</option>
+            <option value="all">All Entries</option>
+          </select>
+      </div> */}
+      {/* <div className="notes-list-wrapper"> */}
+        {/* <NotesList {...this.props} reduce={this.state.reduce}/> */}
+
+        <NotesList {...this.props}/>
+      {/* </div> */}
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => ({
-  sort: state.sort,
-  notes: state.notes,
-  isFetching: state.fetching,
-  error: state.error,
-  userId: state.userID
-});
+export default JournalView;
 
-export default connect(
-  mapStateToProps,
-  { getNotes, getNotesBySort }
-)(JournalView);

@@ -184,7 +184,6 @@ textarea {
 .container-main-routes {
   height: 85%;
   width: 100%;
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -298,6 +297,117 @@ textarea {
   background-color: #b2f2bc;
   color: #091714;
   border: 1px solid #091714;
+}
+.main-notes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.main-notes-container .sort {
+  margin-bottom: 4rem;
+}
+.main-notes-container .sort select {
+  font-size: 2rem;
+  padding: 0.75rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+.main-notes-container .sort select option {
+  background-color: #6fe9c7;
+}
+.main-notes-container .notes-list-wrapper {
+  width: 75%;
+  height: 90%;
+  overflow-y: scroll;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month h2 {
+  width: 100%;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 4px solid black;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0% 5%;
+  width: 100%;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background: white;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry p {
+  padding: 0;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .day-number {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .day-acr {
+  font-weight: bold;
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .entry {
+  font-weight: bold;
+  margin-left: 1rem;
+  width: 100%;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .entry-input {
+  font-weight: bold;
+  margin-left: 1rem;
+  width: 100%;
+  font-size: 2rem;
+  border: none;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .entry-button {
+  font-weight: bold;
+  margin-left: 1rem;
+  border: none;
+  border-left: 2px solid black;
+  border-radius: 0.25rem;
+  font-size: 2rem;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+.notes-list-wrapper::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.hidden {
+  display: none;
 }
 .container-main-footer {
   display: flex;

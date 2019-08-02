@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { register } from "../actions";
 
 class Register extends Component {
   constructor() {
@@ -23,19 +25,20 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    const endpoint = "https://one-line-a-day-2.herokuapp.com/api/register";
-    axios
-      .post(endpoint, this.state)
-      .then(res => {
-        console.log(res);
-      })
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log({ Error: err });
-      });
+    this.props.register(this.state);
+    // const endpoint = "https://one-line-a-day-2.herokuapp.com/api/register";
+    // axios
+    //   .post(endpoint, this.state)
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .then(() => {
+    //     this.props.history.push("/");
+    //   })
+    //   .catch(err => {
+    //     console.log({ Error: err });
+    //   });
+    this.props.history.push("/");
   };
 
   render() {
@@ -91,9 +94,16 @@ class Register extends Component {
   }
 }
 
-export default Register;
-
-// export default connect(
-//     mapStateToProps,
-//     { addNote, getNotes, editNote }
-//   )(AddNoteView);
+const mapStateToProps = state => ({
+  userID: state.userID,
+  entries: state.entries,
+  fetching: state.fetching,
+  error: state.error,
+  loggedIn: state.loggedIn
+});
+export default connect(
+  mapStateToProps,
+  { register }
+  )(Register);
+  
+  // export default Register;
