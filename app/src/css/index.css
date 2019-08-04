@@ -218,20 +218,21 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
-  color: #091714;
-  border: 1px solid #091714;
-  border-radius: 0.25rem;
+  width: 12rem;
+  height: 4rem;
+  background-color: #091714;
+  color: #65e7c9;
   font-size: 2rem;
-  font-weight: bold;
+  border: 1px solid #65e7c9;
+  border-radius: 2rem;
   cursor: pointer;
   transition: 0.5s;
-  outline: none;
-  text-decoration: none;
   margin-right: 2rem;
 }
 .container-main-nav .nav-links-container button:hover {
-  color: #266054;
+  background-color: #65e7c9;
+  color: #091714;
+  border: 1px solid #091714;
 }
 .login-form {
   width: 100%;

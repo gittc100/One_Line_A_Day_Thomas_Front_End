@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, NavLink, Redirect  } from "react-router-dom";
-import {browserHistory} from 'react-router';
 import logo from "../imgs/one-line-logo.svg";
+import { logOFF } from "../actions";
 
 class Nav extends Component {
-  logOut = () => {
+
+  componentDidMount() {
     localStorage.removeItem("jwt");
-    window.alert("Logged Off");
-  };
+  }
+
   render() {
     return (
       <>
@@ -18,7 +18,15 @@ class Nav extends Component {
             <h2>One Line A Day</h2>
           </div>
           <div className="nav-links-container">
-            <button className="nav-main-btn" onClick={this.logOut}>
+            <button className="nav-main-btn" onClick={()=>{
+              if(this.props.loggedIn === false){
+                window.alert("You are not logged in.")
+              }else{
+              window.alert("Logged Off")
+              this.props.logOFF()
+              }
+            }
+            }>
               Log Out
             </button>
           </div>
@@ -27,8 +35,6 @@ class Nav extends Component {
     );
   }
 }
-
-// export default Nav;
 
 const mapStateToProps = state => ({
   userID: state.userID,
@@ -40,5 +46,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { }
+  { logOFF }
   )(Nav); 

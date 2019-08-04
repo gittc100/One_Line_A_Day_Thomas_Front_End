@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../actions";
-import axios from "axios";
 import { Route, NavLink } from "react-router-dom";
 
 class Login extends Component {

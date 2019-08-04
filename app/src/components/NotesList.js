@@ -6,6 +6,7 @@ const moment = require("moment");
 class NotesList extends Component {
   constructor() {
     super();
+    this.ENTER_KEY = 13;
     this.state = {
       reduce: "month",
       sorting: false,
@@ -16,6 +17,14 @@ class NotesList extends Component {
       this.props.history.push("/login");
     }else{
       this.props.getNotes(this.props.userID);
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props !== prevProps){
+      if (this.props.loggedIn === false) {
+        this.props.history.push("/login");
+      }
     }
   }
 
@@ -42,6 +51,12 @@ class NotesList extends Component {
       ...this.state,
       [event.target.name]: event.target.value
     });
+  }
+
+  handleKeyDown = (event, mod, obj) => {
+    if (event.which === this.ENTER_KEY) {
+      this.handleSubmit(mod, obj);
+    }
   }
 
   handleSubmit = (mod, obj) => {
@@ -166,6 +181,12 @@ class NotesList extends Component {
                   className={this.state[id] ? "entry-input" : "hidden"}
                   value={this.state[mod]}
                   onChange={this.handleChange}
+                  onKeyDown={(event)=>{
+                    this.handleKeyDown(event, mod, {
+                      user_id: curDay.user_id,
+                      entry_id: id
+                    })
+                  }}
                 />
                 <button 
                   className={this.state[id] ? "entry-button" : "hidden"}
