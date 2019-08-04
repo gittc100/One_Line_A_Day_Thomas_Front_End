@@ -22,7 +22,8 @@ import {
   LOGIN_USER_FAILURE,
   REGISTER_USER_START,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_FAILURE
+  REGISTER_USER_FAILURE,
+  LOGOFF_USER_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -181,6 +182,8 @@ const notesReducer = (state = initialState, action) => {
         error: action.payload,
         loggedIn: false
       };
+    case LOGOFF_USER_SUCCESS:
+    return initialState;
     default:
       return state;
   }

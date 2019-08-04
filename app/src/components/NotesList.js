@@ -6,36 +6,34 @@ const moment = require("moment");
 class NotesList extends Component {
   constructor() {
     super();
+    this.ENTER_KEY = 13;
     this.state = {
-      sortedArray: null,
-      reduce: "month"
+      reduce: "month",
+      sorting: false,
     };
-    this.sortEntries = this.sortEntries.bind(this);
   }
-  async componentDidMount() {
-    this.props.getNotes(1);
-    // this.setState({
-    //   ...this.state,
-    //   reduce: this.props.reduce
-    // });
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if (this.props.reduce !== prevProps.reduce) {
-      console.log("run ----------------------- reduce did update");
-      this.setState({
-        ...this.state,
-        reduce: this.props.reduce,
-        sortedArray: null
-      });
-      this.sortEntries(this.state.reduce);
+  componentDidMount() {
+    if(this.props.userID === null){
+      this.props.history.push("/login");
+    }else{
+      this.props.getNotes(this.props.userID);
     }
   }
+
+  componentDidUpdate(prevProps){
+    if(this.props !== prevProps){
+      if (this.props.loggedIn === false) {
+        this.props.history.push("/login");
+      }
+    }
+  }
+
   sortHandler = e => {
-    console.log(e.target.value);
-    e.preventDefault();
-    this.setState({ ...this.state, reduce: e.target.value });
-    this.sortEntries(this.props.reduce);
+    this.setState({ 
+      ...this.state, 
+      reduce: e.target.value,
+      sorting: true
+    });
   };
 
   handleEdit = (name) => {
@@ -55,6 +53,12 @@ class NotesList extends Component {
     });
   }
 
+  handleKeyDown = (event, mod, obj) => {
+    if (event.which === this.ENTER_KEY) {
+      this.handleSubmit(mod, obj);
+    }
+  }
+
   handleSubmit = (mod, obj) => {
     let val = this.state[mod];
     if (val) {
@@ -66,11 +70,11 @@ class NotesList extends Component {
         });
         let userID = obj.user_id
         let entryID = obj.entry_id
-        let option = {
+        let body = {
           entry: val,
           user_id: userID + ""
         };
-        this.props.editNote(userID,entryID,option);
+        this.props.editNote(userID,entryID,body);
       }
   }
 
@@ -84,50 +88,6 @@ class NotesList extends Component {
           [id]: !this.state[id]
         });
       }
-  }
-
-  async sortEntries(reduce){
-    let entries = this.props.entries;
-    let sortedArray;
-    let date = moment().format('YYYY-MM-DD');
-    let month = date.slice(5, 7);
-    let year = date.slice(0, 4);
-    console.log("date",date);
-    console.log("month",month);
-    console.log("year",year);
-
-    function sortEnt(entries){
-      let arrayRes = [];
-      let sorted = entries.sort((a,b)=>{
-        return moment(a.date).format('YYYY-MM-DD') - moment(b.date).format('YYYY-MM-DD');
-      });
-      console.log("sorted",sorted);
-      if(reduce === "month" || reduce === "year"){
-        for(let i = 0; i < sorted.length; i++){
-          if(reduce === "month"){
-            if(sorted[i].date.slice(5, 7) === month && sorted[i].date.slice(0, 4) === year){
-              arrayRes.push(sorted[i]);
-            }else{
-              continue;
-            }
-          }else if(reduce === "year"){
-            if(sorted[i].date.slice(0, 4) === year){
-              arrayRes.push(sorted[i]);
-            }else{
-              continue;
-            }
-          }
-        }
-        return arrayRes;
-      }else if(reduce === "all"){
-        return sorted;
-      }
-    };
-    sortedArray = await sortEnt(entries);
-    this.setState({
-      ...this.state,
-      sortedArray: sortedArray
-    });
   }
 
   createEntries = () => {
@@ -152,8 +112,33 @@ class NotesList extends Component {
     let curMonth;
     let curDay;
     let curMonthConversion;
-    let sortedArray = this.state.sortedArray;
-    // let sortedArray = this.props.entries;
+    let sorted = this.props.entries;
+    let sortedArray = [];
+
+    let reduce = this.state.reduce;
+    let dateSort = moment().format('YYYY-MM-DD');
+    let monthSort = dateSort.slice(5, 7);
+    let yearSort = dateSort.slice(0, 4);
+
+    if(reduce === "month" || reduce === "year"){
+      for(let i = 0; i < sorted.length; i++){
+        if(reduce === "month"){
+          if(sorted[i].date.slice(5, 7) === monthSort && sorted[i].date.slice(0, 4) === yearSort){
+            sortedArray.push(sorted[i]);
+          }else{
+            continue;
+          }
+        }else if(reduce === "year"){
+          if(sorted[i].date.slice(0, 4) === yearSort){
+            sortedArray.push(sorted[i]);
+          }else{
+            continue;
+          }
+        }
+      }
+    }else if(reduce === "all"){
+      sortedArray = sorted;
+    }
     
     for(let i = 0; i < sortedArray.length; i++){
       let sliceYear;
@@ -163,13 +148,6 @@ class NotesList extends Component {
       let entry;
       let month;
       let year;
-
-      // curMonthConversion = Object.keys(months).find(key => months[key] === curMonth);
-      // curDay = sortedArray[i];
-      // sliceYear = sortedArray[i].date.slice(0, 4);
-      // sliceMonth = sortedArray[i].date.slice(5, 7);
-      // sliceDayNumber = sortedArray[i].date.slice(8, 10);
-      // sliceDayAcronym = sortedArray[i].date.slice(11);
 
       curMonthConversion = Object.keys(months).find(key => months[key] === curMonth);
       curDay = sortedArray[i];
@@ -203,6 +181,12 @@ class NotesList extends Component {
                   className={this.state[id] ? "entry-input" : "hidden"}
                   value={this.state[mod]}
                   onChange={this.handleChange}
+                  onKeyDown={(event)=>{
+                    this.handleKeyDown(event, mod, {
+                      user_id: curDay.user_id,
+                      entry_id: id
+                    })
+                  }}
                 />
                 <button 
                   className={this.state[id] ? "entry-button" : "hidden"}
@@ -257,32 +241,24 @@ class NotesList extends Component {
       if(i === sortedArray.length - 1){
         curYearArray.push(month);
         resultArray.push(year);
-        return resultArray;
       }
     }
+      return resultArray
   }
 
-  entry = () =>{
+  entriesContainer = () =>{
     if (this.props.isFetching || this.props.entries === null) {
       return <h4>Loading items...</h4>;
     }else{
-      if( this.state.sortedArray === null ){
-        this.sortEntries(this.state.reduce);
-      }
-      if( this.state.sortedArray !== null ){
-        return (
-          <>
-            {this.createEntries()}
-          </>
-        );
-      }
-      else{
-        return <h4>Loading items...</h4>;
-      }
+        return this.createEntries();
     }
   }
 
   render() {
+    let jwt = localStorage.getItem("jwt");
+    if(jwt === null){
+      this.props.history.push("/login");
+    }
     return(
     <>
     <div className="sort">
@@ -294,29 +270,11 @@ class NotesList extends Component {
       </div>
       <div className="notes-list-wrapper">
       {
-        this.entry()
-        
+        this.entriesContainer()
       }
       </div>
     </>
     );
-    // if (this.props.isFetching || this.props.entries === null) {
-    //   return <h4>Loading items...</h4>;
-    // }else{
-    //   if( this.state.sortedArray === null){
-    //     this.sortEntries(this.state.reduce);
-    //   }
-    //   if( this.state.sortedArray !== null){
-    //     return (
-    //       <>
-    //         {this.createEntries()}
-    //       </>
-    //     );
-    //   }
-    //   else{
-    //     return <h4>Loading items...</h4>;
-    //   }
-    // }
   }
 };
 
