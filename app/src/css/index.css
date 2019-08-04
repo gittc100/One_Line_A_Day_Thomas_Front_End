@@ -382,6 +382,8 @@ textarea {
   font-weight: bold;
   margin-left: 1rem;
   font-size: 2rem;
+  padding-right: 1.5rem;
+  border-right: 2px solid black;
 }
 .main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .entry {
   font-weight: bold;
