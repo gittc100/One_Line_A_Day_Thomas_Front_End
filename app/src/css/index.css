@@ -201,7 +201,7 @@ textarea {
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  margin-left: 1.25rem;
+  margin-left: 2rem;
 }
 .container-main-nav .container-logo img {
   width: 4rem;
@@ -220,12 +220,15 @@ textarea {
   align-items: center;
   background-color: transparent;
   color: #091714;
+  border: 1px solid #091714;
+  border-radius: 0.25rem;
   font-size: 2rem;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.5s;
-  border: none;
   outline: none;
   text-decoration: none;
+  margin-right: 2rem;
 }
 .container-main-nav .nav-links-container button:hover {
   color: #266054;
@@ -310,6 +313,7 @@ textarea {
 }
 .main-notes-container .sort select {
   font-size: 2rem;
+  font-weight: bold;
   padding: 0.75rem;
   border: 1px solid black;
   border-radius: 0.25rem;

@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Route, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { Route, NavLink, Redirect  } from "react-router-dom";
+import {browserHistory} from 'react-router';
 import logo from "../imgs/one-line-logo.svg";
 
 class Nav extends Component {
+  logOut = () => {
+    localStorage.removeItem("jwt");
+    window.alert("Logged Off");
+  };
   render() {
     return (
       <>
@@ -23,4 +28,17 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+// export default Nav;
+
+const mapStateToProps = state => ({
+  userID: state.userID,
+  entries: state.entries,
+  fetching: state.fetching,
+  error: state.error,
+  loggedIn: state.loggedIn
+});
+
+export default connect(
+  mapStateToProps,
+  { }
+  )(Nav); 

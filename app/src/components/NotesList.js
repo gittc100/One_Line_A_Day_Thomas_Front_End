@@ -12,7 +12,11 @@ class NotesList extends Component {
     };
   }
   componentDidMount() {
-    this.props.getNotes(1);
+    if(this.props.userID === null){
+      this.props.history.push("/login");
+    }else{
+      this.props.getNotes(this.props.userID);
+    }
   }
 
   sortHandler = e => {
@@ -51,11 +55,11 @@ class NotesList extends Component {
         });
         let userID = obj.user_id
         let entryID = obj.entry_id
-        let option = {
+        let body = {
           entry: val,
           user_id: userID + ""
         };
-        this.props.editNote(userID,entryID,option);
+        this.props.editNote(userID,entryID,body);
       }
   }
 
@@ -230,6 +234,10 @@ class NotesList extends Component {
   }
 
   render() {
+    let jwt = localStorage.getItem("jwt");
+    if(jwt === null){
+      this.props.history.push("/login");
+    }
     return(
     <>
     <div className="sort">

@@ -16,6 +16,14 @@ class Register extends Component {
     };
   }
 
+  componentDidUpdate(prevProps){
+    if(this.props.fetching !== prevProps.fetching){
+      if (this.props.error) {
+        window.alert(this.props.error.response.data.detail);
+      }
+    }
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -25,24 +33,19 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.register(this.state);
-    // const endpoint = "https://one-line-a-day-2.herokuapp.com/api/register";
-    // axios
-    //   .post(endpoint, this.state)
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    //   .then(() => {
-    //     this.props.history.push("/");
-    //   })
-    //   .catch(err => {
-    //     console.log({ Error: err });
-    //   });
-    this.props.history.push("/");
+    let {username,password,firstname,lastname,email } = this.state;
+    if(username === "" || password === "" || firstname === "" || lastname === "" || email === ""){
+      window.alert("Missing Entry Value");
+    }else{
+      this.props.register(this.state, this.props);
+    }
   };
 
   render() {
     const { username, firstname, lastname, email, password } = this.state;
+    if (this.props.fetching) {
+      return <h4>Registering ...</h4>;
+    }
     return (
       <form className="login-form">
         <h3>Register</h3>

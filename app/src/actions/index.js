@@ -68,7 +68,7 @@ export const getNotes = userID => dispatch => {
   axios
     .get(
       `https://one-line-a-day-2.herokuapp.com/api/users/${userID}/entries`,
-      // options
+      options
     )
     .then(response => {
       console.log("fetch finished");
@@ -151,7 +151,7 @@ export const editNote = (userID, entryID, item) => dispatch => {
     .put(
       `https://one-line-a-day-2.herokuapp.com/api/users/${userID}/entries/${entryID}`,
       item,
-      // options
+      options
     )
     .then(response => {
       console.log(response);
@@ -163,7 +163,7 @@ export const editNote = (userID, entryID, item) => dispatch => {
     .catch(err => dispatch({ type: EDIT_NOTE_FAILURE, payload: err }));
 };
 
-export const login = item => dispatch => {
+export const login = (item, props) => dispatch => {
   dispatch({ type: LOGIN_USER_START });
   axios
     .post("https://one-line-a-day-2.herokuapp.com/api/login", item)
@@ -175,11 +175,13 @@ export const login = item => dispatch => {
         type: LOGIN_USER_SUCCESS,
         payload: res.data.id
       });
+    }).then(()=>{
+      props.history.push("/");
     })
     .catch(err => dispatch({ type: LOGIN_USER_FAILURE, payload: err }));
 };
 
-export const register = item => dispatch => {
+export const register = (item, props) => dispatch => {
   dispatch({ type: REGISTER_USER_START });
   axios
     .post("https://one-line-a-day-2.herokuapp.com/api/register", item)
@@ -190,6 +192,8 @@ export const register = item => dispatch => {
         type: REGISTER_USER_SUCCESS,
         payload: res.data.id
       });
+    }).then(()=>{
+      props.history.push("/login");
     })
     .catch(err => dispatch({ type: REGISTER_USER_FAILURE, payload: err }));
 };

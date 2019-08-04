@@ -13,11 +13,13 @@ class Login extends Component {
     };
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (localStorage.getItem("jwt")) {
-  //     this.props.history.push("/");
-  //   }
-  // }
+  componentDidUpdate(prevProps){
+    if(this.props.isFetching !== prevProps.isFetching){
+      if (this.props.error) {
+        window.alert(this.props.error.response.data.message);
+      }
+    }
+  }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -25,16 +27,23 @@ class Login extends Component {
 
   submitHandler = event => {
     event.preventDefault();
+    if(this.state.username === "" || this.state.password === ""){
+      window.alert("Missing Entry Value");
+    }else{
     this.props.login({
       username: this.state.username,
       password: this.state.password
-    });
+    }, this.props);
+  }
   };
 
   render() {
     if (this.props.isFetching) {
       return <h4>Loggin In ...</h4>;
     }
+    // if (this.props.error) {
+    //   window.alert(this.props.error.response.data.message);
+    // }
     return (
       <form className="login-form">
         <h3>Login</h3>
@@ -64,8 +73,6 @@ class Login extends Component {
     );
   }
 }
-
-// export default Login;
 
 const mapStateToProps = state => ({
   isFetching: state.fetching,
