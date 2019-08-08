@@ -167,8 +167,10 @@ class NotesList extends Component {
         }
 
       entry = <div className="entries-container-entry">
-                <p className="day-number">{sliceDayNumber}</p>
-                <p className="day-acr">{sliceDayAcronym}</p>
+                <div className="container-date">
+                  <p className="day-number">{sliceDayNumber}</p>
+                  <p className="day-acr">{sliceDayAcronym}</p>
+                </div>
                 <p
                   className={this.state[id] ? "hidden" : "entry"}
                   onDoubleClick={()=>this.handleEdit(mod)}

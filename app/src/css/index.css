@@ -374,16 +374,20 @@ textarea {
 .main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry p {
   padding: 0;
 }
-.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .day-number {
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .container-date {
+  display: flex;
+  flex-direction: row;
+  width: 12%;
+  border-right: 2px solid black;
+}
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .container-date .day-number {
   font-weight: bold;
   font-size: 2rem;
 }
-.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .day-acr {
+.main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .container-date .day-acr {
   font-weight: bold;
   margin-left: 1rem;
   font-size: 2rem;
-  padding-right: 1.5rem;
-  border-right: 2px solid black;
 }
 .main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .entry {
   font-weight: bold;
@@ -395,7 +399,7 @@ textarea {
 .main-notes-container .notes-list-wrapper .entries-container-year .entries-container-months .entries-container-month .entries-container-entries .entries-container-entry .entry-input {
   font-weight: bold;
   margin-left: 1rem;
-  width: 100%;
+  width: 74%;
   font-size: 2rem;
   border: none;
 }

@@ -63,16 +63,20 @@
                             p{
                                 padding: 0;
                             }
-                            .day-number{
-                                font-weight: bold;
-                                font-size: 2rem;
-                            }
-                            .day-acr{
-                                font-weight: bold;
-                                margin-left: 1rem;
-                                font-size: 2rem;
-                                padding-right: 1.5rem;
+                            .container-date{
+                                display: flex;
+                                flex-direction: row;
+                                width: 12%;
                                 border-right: 2px solid black;
+                                .day-number{
+                                    font-weight: bold;
+                                    font-size: 2rem;
+                                }
+                                .day-acr{
+                                    font-weight: bold;
+                                    margin-left: 1rem;
+                                    font-size: 2rem;  
+                                }
                             }
                             .entry{
                                 font-weight: bold;
@@ -84,7 +88,7 @@
                             .entry-input{
                                 font-weight: bold;
                                 margin-left: 1rem;
-                                width: 100%;
+                                width: 74%;
                                 font-size: 2rem;
                                 border: none;
                             }
