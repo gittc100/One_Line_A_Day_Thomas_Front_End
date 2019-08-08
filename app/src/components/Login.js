@@ -13,7 +13,7 @@ class Login extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.isFetching !== prevProps.isFetching){
+    if(this.props.isFetching !== prevProps.isFetching && !this.props.isFetching){
       if (this.props.error) {
         window.alert(this.props.error.response.data.message);
       }
@@ -40,9 +40,6 @@ class Login extends Component {
     if (this.props.isFetching) {
       return <h4>Loggin In ...</h4>;
     }
-    // if (this.props.error) {
-    //   window.alert(this.props.error.response.data.message);
-    // }
     return (
       <form className="login-form">
         <h3>Login</h3>
