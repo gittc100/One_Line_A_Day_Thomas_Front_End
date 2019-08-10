@@ -7,6 +7,7 @@ class NotesList extends Component {
   constructor() {
     super();
     this.ENTER_KEY = 13;
+    this.ESC_KEY = 27;
     this.state = {
       reduce: "month",
       sorting: false,
@@ -56,6 +57,8 @@ class NotesList extends Component {
   handleKeyDown = (event, mod, obj) => {
     if (event.which === this.ENTER_KEY) {
       this.handleSubmit(mod, obj);
+    }else if(event.which === this.ESC_KEY){
+      this.handleCancel(mod);
     }
   }
 
@@ -197,15 +200,19 @@ class NotesList extends Component {
                       user_id: curDay.user_id,
                       entry_id: id
                     })
-                }>
-                  Submit
+                  }
+                  title="Submit"
+                >
+                  <i class="fas fa-check"></i>
                 </button>
                 <button 
                   className={this.state[id] ? "entry-button" : "hidden"}
                   onClick={
                     ()=>this.handleCancel(mod)
-                }>
-                  Cancel
+                  }
+                  title="Cancel"
+                >
+                  <i class="fas fa-window-close"></i>
                 </button>
               </div>
       month = <div className="entries-container-month">
@@ -267,7 +274,7 @@ class NotesList extends Component {
           <select onChange={this.sortHandler}>
             <option selected="selected" value="month">Current Monthly Entries</option>
             <option value="year">Current Yearly Entries</option>
-            <option value="all">All Entries</option>
+            {/* <option value="all">All Entries</option> */}
           </select>
       </div>
       <div className="notes-list-wrapper">

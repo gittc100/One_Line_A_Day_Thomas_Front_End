@@ -17,6 +17,9 @@
             option{
                 background-color: rgb(111,233,199);
             }
+            @media (max-width: 500px){
+                border-radius: 2rem;
+            }
         }
     }
     .notes-list-wrapper{
@@ -66,7 +69,7 @@
                             .container-date{
                                 display: flex;
                                 flex-direction: row;
-                                width: 12%;
+                                width: 8rem;
                                 border-right: 2px solid black;
                                 .day-number{
                                     font-weight: bold;
@@ -81,31 +84,43 @@
                             .entry{
                                 font-weight: bold;
                                 margin-left: 1rem;
-                                width: 100%;
+                                width: calc(100% - 8rem);
                                 font-size: 2rem;
                                 cursor: pointer;
                             }
                             .entry-input{
                                 font-weight: bold;
                                 margin-left: 1rem;
-                                width: 74%;
+                                width: calc(100% - 17rem);
                                 font-size: 2rem;
                                 border: none;
                             }
                             .entry-button{
                                 font-weight: bold;
-                                margin-left: 1rem;
+                                // margin-left: 1rem;
                                 border: none;
                                 border-left: 2px solid black;
                                 border-radius: 0.25rem;
-                                font-size: 2rem;
+                                font-size: 3rem;
                                 background: @white;
                                 cursor: pointer;
+                                &:hover:nth-child(odd){
+                                    color: red;
+                                }
+                                &:hover:nth-child(even){
+                                    color: green;
+                                }
                             }
+                        }
+                        @media (max-width: 800px){
+                            padding:0
                         }
                     }
                 }
             }
+        }
+        @media (max-width: 800px){
+            width:95%;
         }
     }
 }
