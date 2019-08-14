@@ -6,7 +6,7 @@ class JournalView extends React.Component {
   render() {
     return (
       <div className="main-notes-container">
-        <NotesList {...this.props}/>
+        <NotesList props={this.props}/>
       </div>
     );
   }

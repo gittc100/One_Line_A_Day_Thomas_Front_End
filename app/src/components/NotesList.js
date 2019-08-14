@@ -11,11 +11,12 @@ class NotesList extends Component {
     this.state = {
       reduce: "month",
       sorting: false,
+      page: 0
     };
   }
   componentDidMount() {
     if(this.props.userID === null){
-      this.props.history.push("/login");
+      this.props.props.history.push("/login");
     }else{
       this.props.getNotes(this.props.userID);
     }
@@ -24,7 +25,7 @@ class NotesList extends Component {
   componentDidUpdate(prevProps){
     if(this.props !== prevProps){
       if (this.props.loggedIn === false) {
-        this.props.history.push("/login");
+        this.props.props.history.push("/login");
       }
     }
   }
@@ -256,7 +257,7 @@ class NotesList extends Component {
   }
 
   entriesContainer = () =>{
-    if (this.props.isFetching || this.props.entries === null) {
+    if (this.props.isFetching || this.props.entries === null || this.props.entries.length === 0) {
       return <h4>Loading items...</h4>;
     }else{
         return this.createEntries();
@@ -266,7 +267,7 @@ class NotesList extends Component {
   render() {
     let jwt = localStorage.getItem("jwt");
     if(jwt === null){
-      this.props.history.push("/login");
+      this.props.props.history.push("/login");
     }
     return(
     <>
