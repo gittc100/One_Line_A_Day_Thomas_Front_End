@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "less-watch-compiler": "^1.13.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-markdown": "^4.0.4",
